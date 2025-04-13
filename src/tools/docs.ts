@@ -25,9 +25,9 @@ const fetchDocs = async () => {
 
 export const docsTool = {
     name: "docs",
-    description: "Get AI SDK Docs content",
+    description: "Get AI SDK Docs content. If you want to get a specific doc, please provide the path. For example: /docs/introduction. If you want to get all docs, please provide no path.",
     parameters: z.object({
-        path: z.string().optional(),
+        path: z.string().optional().describe("Path to the specific doc. If specified, it should start with /docs/. If not specified, all docs will be fetched."),
     }),
     execute: async (args: { path?: string; }, context: Context<any>) => {
         const { log } = context

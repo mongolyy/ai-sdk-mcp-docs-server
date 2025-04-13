@@ -25,9 +25,9 @@ const fetchProviders = async () => {
 
 export const providersTool = {
     name: "providers",
-    description: "Get AI SDK Providers information and documentation",
+    description: "Get AI SDK Providers information and documentation. If you want to get a specific provider, please provide the path. For example: /providers/ai-sdk-providers. If you want to get all providers, please provide no path.",
     parameters: z.object({
-        path: z.string().optional(),
+        path: z.string().optional().describe("Path to the specific provider. If specified, it should start with /providers/. If not specified, all providers will be fetched."),
     }),
     execute: async (args: { path?: string; }, context: Context<any>) => {
         const { log } = context

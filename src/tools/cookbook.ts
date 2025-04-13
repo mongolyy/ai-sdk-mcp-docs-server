@@ -25,9 +25,9 @@ const fetchCookbooks = async () => {
 
 export const cookbookTool = {
     name: "cookbook",
-    description: "Get AI SDK Cookbook content with examples and tutorials",
+    description: "Get AI SDK Cookbook content with examples and tutorials. If you want to get a specific cookbook, please provide the path. For example: /cookbook/next/generate-text. If you want to get all cookbooks, please provide no path.",
     parameters: z.object({
-        path: z.string().optional(),
+        path: z.string().optional().describe("Path to the specific cookbook. If specified, it should start with /cookbook/. If not specified, all cookbooks will be fetched."),
     }),
     execute: async (args: { path?: string; }, context: Context<any>) => {
         const { log } = context
