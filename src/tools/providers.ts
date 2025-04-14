@@ -13,7 +13,7 @@ const fetchProvider = async (path: string) => {
 
     if (!mainContent) {
         const bodyText = document.body.textContent || ''
-        return bodyText.length > 10000 ? bodyText.substring(0, 10000) + '...(content truncated due to length)' : bodyText
+        return bodyText.length > 50000 ? bodyText.substring(0, 50000) + '...(content truncated due to length)' : bodyText
     }
 
     const elementsToRemove = mainContent.querySelectorAll('nav, footer, aside, script, style')
@@ -21,7 +21,7 @@ const fetchProvider = async (path: string) => {
 
     const contentText = mainContent.textContent || ''
 
-    return contentText.length > 10000 ? contentText.substring(0, 10000) + '...(content truncated due to length)' : contentText
+    return contentText.length > 50000 ? contentText.substring(0, 50000) + '...(content truncated due to length)' : contentText
 }
 
 const fetchProviders = async () => {
@@ -41,7 +41,7 @@ const fetchProviders = async () => {
 
 export const providersTool = {
     name: "providers",
-    description: "Get AI SDK Providers information and documentation. If you want to get a specific provider, please provide the path. For example: /providers/ai-sdk-providers. If you want to get all providers, please provide no path.",
+    description: "Get AI SDK Providers information and documentation. If you want to get all providers, please provide no path. If you want to get a specific provider, please provide the path.",
     parameters: z.object({
         path: z.string().optional().describe("Path to the specific provider. If specified, it should start with /providers/. If not specified, all providers will be fetched."),
     }),

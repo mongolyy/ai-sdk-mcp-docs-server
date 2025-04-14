@@ -105,16 +105,16 @@ npx fastmcp inspect src/index.ts
 ## Available Tools
 
 - **docs** - Get AI SDK documentation
-  - With path: `/docs/introduction` - Get specific doc
   - Without path: Get list of all docs
+  - With path: `/docs/introduction` - Get specific doc
 
 - **cookbook** - Get cookbook examples
-  - With path: `/cookbook/next/generate-text` - Get specific example
   - Without path: Get list of all examples
+  - With path: `/cookbook/next/generate-text` - Get specific example
 
 - **providers** - Get provider information
-  - With path: `/providers/ai-sdk-providers` - Get specific provider info
   - Without path: Get list of all providers
+  - With path: `/providers/ai-sdk-providers` - Get specific provider info
 
 ## How It Works
 

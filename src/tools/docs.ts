@@ -13,7 +13,7 @@ const fetchDoc = async (path: string) => {
 
     if (!mainContent) {
         const bodyText = document.body.textContent || ''
-        return bodyText.length > 10000 ? bodyText.substring(0, 10000) + '...(content truncated due to length)' : bodyText
+        return bodyText.length > 50000 ? bodyText.substring(0, 50000) + '...(content truncated due to length)' : bodyText
     }
 
     const elementsToRemove = mainContent.querySelectorAll('nav, footer, aside, script, style')
@@ -21,7 +21,7 @@ const fetchDoc = async (path: string) => {
 
     const contentText = mainContent.textContent || ''
 
-    return contentText.length > 10000 ? contentText.substring(0, 10000) + '...(content truncated due to length)' : contentText
+    return contentText.length > 50000 ? contentText.substring(0, 50000) + '...(content truncated due to length)' : contentText
 }
 
 const fetchDocs = async () => {
@@ -41,7 +41,7 @@ const fetchDocs = async () => {
 
 export const docsTool = {
     name: "docs",
-    description: "Get AI SDK Docs content. If you want to get a specific doc, please provide the path. For example: /docs/introduction. If you want to get all docs, please provide no path.",
+    description: "Get AI SDK Docs content. If you want to get all docs, please provide no path. If you want to get a specific doc, please provide the path.",
     parameters: z.object({
         path: z.string().optional().describe("Path to the specific doc. If specified, it should start with /docs/. If not specified, all docs will be fetched."),
     }),

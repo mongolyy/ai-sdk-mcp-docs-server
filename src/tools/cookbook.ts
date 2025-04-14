@@ -13,7 +13,7 @@ const fetchCookbook = async (path: string) => {
 
     if (!mainContent) {
         const bodyText = document.body.textContent || ''
-        return bodyText.length > 10000 ? bodyText.substring(0, 10000) + '...(content truncated due to length)' : bodyText
+        return bodyText.length > 50000 ? bodyText.substring(0, 50000) + '...(content truncated due to length)' : bodyText
     }
 
     const elementsToRemove = mainContent.querySelectorAll('nav, footer, aside, script, style')
@@ -21,7 +21,7 @@ const fetchCookbook = async (path: string) => {
 
     const contentText = mainContent.textContent || ''
 
-    return contentText.length > 10000 ? contentText.substring(0, 10000) + '...(content truncated due to length)' : contentText
+    return contentText.length > 50000 ? contentText.substring(0, 50000) + '...(content truncated due to length)' : contentText
 }
 
 const fetchCookbooks = async () => {
@@ -41,7 +41,7 @@ const fetchCookbooks = async () => {
 
 export const cookbookTool = {
     name: "cookbook",
-    description: "Get AI SDK Cookbook content with examples and tutorials. If you want to get a specific cookbook, please provide the path. For example: /cookbook/next/generate-text. If you want to get all cookbooks, please provide no path.",
+    description: "Get AI SDK Cookbook content with examples and tutorials. If you want to get all cookbooks, please provide no path. If you want to get a specific cookbook, please provide the path.",
     parameters: z.object({
         path: z.string().optional().describe("Path to the specific cookbook. If specified, it should start with /cookbook/. If not specified, all cookbooks will be fetched."),
     }),
