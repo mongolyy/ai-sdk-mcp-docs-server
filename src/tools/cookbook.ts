@@ -4,8 +4,24 @@ import { Context } from "fastmcp"
 
 const fetchCookbook = async (path: string) => {
     const response = await fetch(`https://sdk.vercel.ai${path}`)
-    const cookbook = await response.text()
-    return cookbook
+    const html = await response.text()
+
+    const dom = new JSDOM(html)
+    const document = dom.window.document
+
+    const mainContent = document.querySelector('main') || document.querySelector('article')
+
+    if (!mainContent) {
+        const bodyText = document.body.textContent || ''
+        return bodyText.length > 10000 ? bodyText.substring(0, 10000) + '...(content truncated due to length)' : bodyText
+    }
+
+    const elementsToRemove = mainContent.querySelectorAll('nav, footer, aside, script, style')
+    elementsToRemove.forEach(el => el.remove())
+
+    const contentText = mainContent.textContent || ''
+
+    return contentText.length > 10000 ? contentText.substring(0, 10000) + '...(content truncated due to length)' : contentText
 }
 
 const fetchCookbooks = async () => {
